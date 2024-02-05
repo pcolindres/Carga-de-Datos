@@ -1,0 +1,35 @@
+import pandas as pd
+
+# Supongamos que tu objeto Dataset se llama 'data' :)
+data = Dataset({
+    'features': [
+        'age',
+        'has_anaemia',
+        'creatinine_phosphokinase_concentration_in_blood',
+        'has_diabetes',
+        'heart_ejection_fraction',
+        'has_high_blood_pressure',
+        'platelets_concentration_in_blood',
+        'serum_creatinine_concentration_in_blood', 
+        'serum_sodium_concentration_in_blood',
+        'is_male', 'is_smoker',
+        'days_in_study',
+        'is_dead'
+    ],
+    'num_rows': 299
+})
+
+# Convertir el objeto Dataset a un DataFrame de Pandas
+df = pd.DataFrame(data)
+
+# Separar el DataFrame en dos según el valor de 'is_dead'
+df_perecieron = df[df['is_dead'] == 1]
+df_no_perecieron = df[df['is_dead'] == 0]
+
+# Calcular el promedio de edades para cada conjunto de datos
+promedio_edades_perecieron = df_perecieron['age'].mean()
+promedio_edades_no_perecieron = df_no_perecieron['age'].mean()
+
+# Imprimir los resultados
+print("Promedio de edad de personas que perecieron:", promedio_edades_perecieron)
+print("Promedio de edad de personas que no perecieron:", promedio_edades_no_perecieron)
